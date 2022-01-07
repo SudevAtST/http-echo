@@ -1,5 +1,5 @@
 {
-  "name": "@kennship/http-echo",
+  "name": "@sudevatst/http-echo",
   "version": "1.0.1",
   "description": "JSON service for debugging a web setup",
   "main": "index.js",
@@ -7,13 +7,13 @@
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Ryan Muller <ryan@kennship.com>",
+  "author": "Sudev Gandhi <sudev.gandhi@travsport.se>",
   "license": "BSD-3-Clause",
   "engines": {
     "node": ">=4.4.1"
   },
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.13.4"
+    "body-parser": "^1.19.1",
+    "express": "^4.17.2"
   }
 }
