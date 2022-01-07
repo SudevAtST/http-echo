@@ -6,6 +6,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.all('*', (req, res) => {
+  console.log(req);
   res.json({
     service: process.env.SERVICE_NAME || undefined, // Keys with value `undefined` are omitted during JSON serialization
     path: req.path,
@@ -21,7 +22,7 @@ app.all('*', (req, res) => {
     query: req.query,
     subdomains: req.subdomains,
     xhr: req.xhr,
-  })
+  });
 })
 
 app.listen(process.env.PORT || 3000)
