@@ -1,12 +1,17 @@
-var express = require('express')
-var bodyParser = require('body-parser') 
+var express = require('express');
+var bodyParser = require('body-parser');
 
-var app = express()
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+var app = express();
+const basicAuth = require('express-basic-auth');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.use(basicAuth({
+  users: { 'WEBHOOKUSER': process.env.BASIC_AUTH_PWD || 'DefaultLong123PasswordAbcdXyz' }
+}));
 
 app.all('*', (req, res) => {
-  console.log(req);
+  console.log(req.body);
   res.json({
     service: process.env.SERVICE_NAME || undefined, // Keys with value `undefined` are omitted during JSON serialization
     path: req.path,
@@ -23,6 +28,6 @@ app.all('*', (req, res) => {
     subdomains: req.subdomains,
     xhr: req.xhr,
   });
-})
+});
 
-app.listen(process.env.PORT || 3000)
+app.listen(process.env.PORT || 3000);
