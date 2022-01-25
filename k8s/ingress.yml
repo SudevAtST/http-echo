@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: http-echo-ingress
+  namespace: sandbox
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/rule-type: PathPrefixStrip
+spec:
+  rules:
+  - host: dev.webhooks.travsport.se
+    http:
+      paths:
+      - backend:
+          serviceName: http-echo-service
+          servicePort: 3000
+        path: /echo-service
+  tls:
+   - secretName: tls-secret
